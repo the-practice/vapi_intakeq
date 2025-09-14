@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: tommy-intakeq-adapter
+    env: node
+    region: oregon
+    plan: starter
+    branch: main
+    rootDir: .
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: INTAKEQ_API_KEY
+        sync: false   # set in dashboard after first deploy
+      - key: TOOL_SHARED_SECRET
+        sync: false
+      - key: CLINIC_TIMEZONE
+        value: America/New_York
+      - key: SERVICE_NAME_NEW
+        value: Psychiatric Evaluation (New Client)
+      - key: SERVICE_DURATION_NEW
+        value: "60"
+      - key: SERVICE_NAME_FOLLOWUP
+        value: Medication Management Follow-Up (15)
+      - key: SERVICE_DURATION_FOLLOWUP
+        value: "15"
+      - key: DEFAULT_LOCATION_ID
+        value: "123456"
